@@ -7,7 +7,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: './',
+  // This is the critical line:
+  base: '/Rajveer-4k.github.io/', 
   build: {
     outDir: 'dist',
     emptyOutDir: true
