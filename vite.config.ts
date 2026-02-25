@@ -1,15 +1,11 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  // Set base to '/' because your repo name is yourusername.github.io
-  base: '/', 
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './'),
-    },
+  plugins: [react()],
+  base: './', // This ensures paths work on GitHub Pages
+  build: {
+    outDir: 'dist',
   },
-});
+})
