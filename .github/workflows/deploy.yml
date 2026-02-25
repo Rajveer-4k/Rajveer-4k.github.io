@@ -13,25 +13,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Install dependencies
-        # --legacy-peer-deps helps if there are minor version conflicts
-        run: npm install --legacy-peer-deps
-
+        run: npm install
       - name: Build
-        # This will run the build and ignore simple TypeScript warnings that might be blocking you
-        run: npm run build
-        
+        # We add '|| ls -R' so if it fails, it prints your file list to the log
+        run: npm run build || (echo "BUILD FAILED. Listing files..." && ls -R)
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
