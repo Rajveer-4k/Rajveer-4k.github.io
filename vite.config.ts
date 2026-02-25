@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // This is the critical line:
+  // Use the exact repo name with slashes
   base: '/Rajveer-4k.github.io/', 
   build: {
     outDir: 'dist',
