@@ -2,7 +2,7 @@ name: Deploy Vite site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"]  # Make sure your branch is named 'main' and not 'master'
 
 permissions:
   contents: read
@@ -19,23 +19,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
       - name: Install dependencies
-        run: npm install
+        run: npm install  # This must happen first
       - name: Build
-        run: npm run build
+        run: npx vite build  # Using 'npx' forces it to find Vite even if the install was shaky
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
