@@ -17,7 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # We removed the cache line here to prevent the lock file error
+      - name: List Files (Debug)
+        run: ls -R # This will show us if your files are in the right place
       - name: Install dependencies
         run: npm install
       - name: Build
