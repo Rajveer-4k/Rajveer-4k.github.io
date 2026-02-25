@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Volume2, VolumeX, Heart } from 'lucide-react';
 
 const timelineData = [
