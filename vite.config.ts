@@ -7,10 +7,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // This tells Vite where the files actually live on GitHub's servers
+  // This must match your repo name exactly
   base: '/Rajveer-4k.github.io/', 
   build: {
     outDir: 'dist',
-    emptyOutDir: true
   }
 })
