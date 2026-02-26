@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // This tells Vite to prefix all your file paths with your repo name
+  // The repo name MUST have a slash at the start and end
   base: '/Rajveer-4k.github.io/', 
   build: {
     outDir: 'dist',
