@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // The repo name MUST have a slash at the start and end
+  // This MUST be your exact repo name with slashes on both sides
   base: '/Rajveer-4k.github.io/', 
   build: {
     outDir: 'dist',
