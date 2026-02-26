@@ -22,7 +22,7 @@ const heartfeltWords = [
   { name: "Rohit Kapoor", message: "(Message goes here...)" },
   { name: "Grace Kapoor", message: "(Message goes here...)" },
   { name: "Kunal Khurana", message: "(Message goes here...)" },
-  { name: "Laksha Khurana", message: "(Message goes here...)" },
+  { name: "Laksha Khurana", message: "(Happy Birthday, Ashima Didi ❤️ || Watching you over the years turn what you’ve always loved into something you do so effortlessly has been nothing short of inspiring. You didn’t just chase a goal… you became it. || Thank you for being our in-house fitness guru and reminder that strong is truly beautiful. || May this year bring you more endorphins, more adventures and of course, cake that fits the macros (or not - balance, right?). || Keep flexing. Keep shining. Keep inspiring. || With lots of love and a big birthday squeeze, || Laksha)" },
   { name: "Alay Patel", message: "(Message goes here...)" },
   { name: "Apeksha Patel", message: "(Message goes here...)" },
   { name: "Divya Jain", message: "(Message goes here...)" },
