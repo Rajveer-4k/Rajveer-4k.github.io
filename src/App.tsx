@@ -287,18 +287,18 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0], index: nu
   const isEven = index % 2 === 0;
   return (
     <motion.div 
-      className={`flex flex-col md:flex-row items-center w-full my-12 relative z-10 ${isEven ? 'md:flex-row-reverse' : ''}`}
+      className={`flex flex-col md:flex-row items-center w-full my-12 relative z-10 ${isEven ? 'md:flex-row-reverse' : ''} pl-8 md:pl-0`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
     >
-      {/* Timeline Dot for Desktop */}
-      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-black rounded-full border-4 border-yellow-500 z-20 items-center justify-center shadow-[0_0_10px_rgba(234,179,8,0.5)]">
-        <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+      {/* Timeline Dot */}
+      <div className="flex absolute left-0 md:left-1/2 top-28 md:top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-8 md:h-8 bg-black rounded-full border-4 border-yellow-500 z-20 items-center justify-center shadow-[0_0_10px_rgba(234,179,8,0.5)]">
+        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-yellow-400 rounded-full"></div>
       </div>
 
-      <div className={`w-full md:w-1/2 flex justify-center p-4 ${isEven ? 'md:justify-start md:pl-16' : 'md:justify-end md:pr-16'}`}>
+      <div className={`w-full md:w-1/2 flex justify-start md:justify-center p-2 md:p-4 ${isEven ? 'md:justify-start md:pl-16' : 'md:justify-end md:pr-16'}`}>
         <div className="relative group w-full max-w-md">
           <div className="absolute -inset-3 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
           <div className="relative rounded-2xl shadow-2xl w-full aspect-[4/3] border-2 border-yellow-500/50 bg-zinc-900 overflow-hidden">
@@ -312,9 +312,9 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0], index: nu
           </div>
         </div>
       </div>
-      <div className={`w-full md:w-1/2 flex flex-col items-center p-8 text-center ${isEven ? 'md:items-end md:text-right md:pr-16' : 'md:items-start md:text-left md:pl-16'}`}>
-        <h3 className="text-5xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 mb-4 drop-shadow-sm">{item.date}</h3>
-        <p className="text-2xl text-zinc-200 font-serif italic">{item.title}</p>
+      <div className={`w-full md:w-1/2 flex flex-col items-start md:items-center p-4 md:p-8 text-left md:text-center ${isEven ? 'md:items-end md:text-right md:pr-16' : 'md:items-start md:text-left md:pl-16'}`}>
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 mb-2 md:mb-4 drop-shadow-sm">{item.date}</h3>
+        <p className="text-xl md:text-2xl text-zinc-200 font-serif italic">{item.title}</p>
       </div>
     </motion.div>
   );
@@ -381,8 +381,8 @@ export default function App() {
 
       {/* Timeline Section */}
       <section className="max-w-6xl mx-auto px-4 py-24 relative">
-        {/* Center line for desktop */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-yellow-500/50 to-transparent transform -translate-x-1/2"></div>
+        {/* Center line for desktop, left line for mobile */}
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-yellow-500/50 to-transparent transform -translate-x-1/2"></div>
         
         {timelineData.map((item, index) => (
           <div key={item.id}>
