@@ -1,6 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { motion } from 'framer-motion';
 import { Volume2, VolumeX, Heart } from 'lucide-react';
 
 const timelineData = [
@@ -108,6 +107,123 @@ const FloatingParticles = () => {
   );
 };
 
+const CakeWithCandles = () => {
+  const [isBlownOut, setIsBlownOut] = useState(false);
+
+  useEffect(() => {
+    if (isBlownOut) return;
+
+    let audioContext: AudioContext | null = null;
+    let analyser: AnalyserNode | null = null;
+    let microphone: MediaStreamAudioSourceNode | null = null;
+    let animationFrame: number;
+    let stream: MediaStream | null = null;
+
+    const startListening = async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        analyser = audioContext.createAnalyser();
+        microphone = audioContext.createMediaStreamSource(stream);
+        
+        analyser.smoothingTimeConstant = 0.8;
+        analyser.fftSize = 256;
+        microphone.connect(analyser);
+
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+        const checkAudio = () => {
+          if (!analyser) return;
+          analyser.getByteFrequencyData(dataArray);
+          
+          let sum = 0;
+          for (let i = 0; i < dataArray.length; i++) {
+            sum += dataArray[i];
+          }
+          const average = sum / dataArray.length;
+
+          // Blowing into a mic creates a loud, low-frequency rumble.
+          // An average volume > 80 is usually a good threshold for blowing.
+          if (average > 80) {
+            setIsBlownOut(true);
+          } else {
+            animationFrame = requestAnimationFrame(checkAudio);
+          }
+        };
+
+        checkAudio();
+      } catch (err) {
+        console.error("Microphone access denied or not supported.", err);
+      }
+    };
+
+    startListening();
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      if (microphone) microphone.disconnect();
+      if (analyser) analyser.disconnect();
+      if (audioContext && audioContext.state !== 'closed') audioContext.close();
+      if (stream) stream.getTracks().forEach(track => track.stop());
+    };
+  }, [isBlownOut]);
+
+  return (
+    <div 
+      className="flex flex-col items-center justify-end cursor-pointer group pb-4 md:pb-8"
+      onClick={() => setIsBlownOut(true)}
+      title={isBlownOut ? "Yay!" : "Blow into the mic or click to blow out!"}
+    >
+      {/* Flames & Candles */}
+      <div className="flex gap-1.5 md:gap-2 mb-[-2px] z-10">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex flex-col items-center relative">
+            <AnimatePresence>
+              {!isBlownOut && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ 
+                    opacity: [0.8, 1, 0.8], 
+                    scale: [0.9, 1.1, 0.9],
+                    rotate: [-5, 5, -5]
+                  }}
+                  exit={{ opacity: 0, scale: 0, y: -10 }}
+                  transition={{ 
+                    duration: 0.2 + Math.random() * 0.2, 
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                  className="w-2 h-3 md:w-2.5 md:h-4 bg-gradient-to-t from-orange-500 to-yellow-200 rounded-full blur-[1px] mb-1 origin-bottom"
+                />
+              )}
+            </AnimatePresence>
+            {/* Smoke puff when blown out */}
+            {isBlownOut && (
+              <motion.div
+                initial={{ opacity: 1, y: 0, scale: 0.5 }}
+                animate={{ opacity: 0, y: -20, scale: 2 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="w-2 h-2 md:w-3 md:h-3 bg-zinc-500 rounded-full blur-[2px] absolute -top-2"
+              />
+            )}
+            <div className="w-1 h-4 md:w-1.5 md:h-5 bg-gradient-to-b from-yellow-100 to-yellow-300 rounded-sm shadow-sm" />
+          </div>
+        ))}
+      </div>
+      
+      {/* Cake Tiers */}
+      <div className="w-12 h-4 md:w-16 md:h-5 bg-gradient-to-b from-zinc-800 to-zinc-900 border-t-2 border-yellow-500 rounded-t-md shadow-lg z-0 relative">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-t-md">
+          <div className="w-full h-1.5 md:h-2 bg-yellow-500/20 rounded-b-full opacity-50"></div>
+        </div>
+      </div>
+      <div className="w-16 h-5 md:w-20 md:h-6 bg-gradient-to-b from-zinc-900 to-black border-t-2 border-yellow-600 rounded-t-md shadow-xl z-0 relative flex items-center justify-center">
+        <div className="w-full h-0.5 md:h-1 bg-yellow-600/20" />
+      </div>
+    </div>
+  );
+};
+
 const LoopyArrow = ({ className = "" }) => (
   <motion.svg 
     width="80" 
@@ -205,12 +321,27 @@ const TimelineItem = ({ item, index }: { item: typeof timelineData[0], index: nu
 }
 
 export default function App() {
+  const [isOpened, setIsOpened] = useState(false);
+
   return (
     <div className="bg-black min-h-screen font-sans overflow-x-hidden text-zinc-100 selection:bg-yellow-500 selection:text-black">
-      <AudioPlayer />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-between bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black overflow-hidden py-12">
+      {/* The Envelope Overlay */}
+      <AnimatePresence>
+        {!isOpened && <Envelope onOpen={() => setIsOpened(true)} />}
+      </AnimatePresence>
+
+      {/* The Main Website (Only renders after envelope is opened) */}
+      {isOpened && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <AudioPlayer />
+          
+          {/* Hero Section */}
+          <section className="relative min-h-screen flex flex-col items-center justify-between bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black overflow-hidden py-12">
         <FloatingParticles />
         
         <div className="flex-1"></div>
@@ -231,15 +362,19 @@ export default function App() {
           </motion.h1>
         </motion.div>
 
-        <div className="flex-1 flex flex-col justify-end z-10 mt-8 shrink-0">
+        <div className="flex-1 flex flex-col justify-end z-10 mt-8 shrink-0 w-full">
           <motion.div 
-            className="flex flex-col items-center"
+            className="flex items-end justify-center gap-4 md:gap-12 w-full px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 1 }}
           >
-            <p className="text-yellow-500/80 font-serif italic mb-2 text-lg">Scroll for memories</p>
-            <LoopyArrow className="text-yellow-500/70" />
+            <CakeWithCandles />
+            <div className="flex flex-col items-center">
+              <p className="text-yellow-500/80 font-serif italic mb-2 text-sm md:text-lg whitespace-nowrap">Scroll for memories</p>
+              <LoopyArrow className="text-yellow-500/70" />
+            </div>
+            <CakeWithCandles />
           </motion.div>
         </div>
       </section>
@@ -317,6 +452,8 @@ export default function App() {
           </div>
         </div>
       </footer>
+        </motion.div>
+      )}
     </div>
   );
 }
