@@ -14,8 +14,8 @@ const timelineData = [
 const heartfeltWords = [
   { name: "Rahul Kapoor", message: "(Happy Birthday BV ❤️, To the woman who doesn’t just stand beside me but quietly holds my entire world together — thank you. You take care of me in ways big and small. From making sure I’ve eaten, to listening to my endless thoughts, to standing strong when I’m not — you do it all with so much care and grace. I may not say it every day, but I feel it every single day. You are my comfort, my strength, my peace, and my biggest blessing. The way you look after me, support me, and love me so selflessly makes me want to become a better man every day. On your birthday, I just want you to feel the same warmth, protection, and care that you give me all year round. You deserve all the happiness in the world — and I promise to keep trying to give you just that. Happy Birthday to my heart, my home, my forever. 💖 "}, 
   { name: "Rajveer Kapoor", message: "To mumma, the best mother a child can ask for. Your are the mother people wish to be. I love you to the moon and backkkkkkk." },
-  { name: "Zeke Kapoor", message: "Woof Woof Woof Woof." },
-  { name: "Pramila Juneja", message: "(Message goes here...)" },
+  { name: "Zeke Kapoor", message: "Woof Woof Woof Woof. (Still waiting for my 47 treats...)" },
+  { name: "Pramila Juneja", message: "( It was on this day (not too many years ago) that I was elevated from a daughter, sister and wife to a Mother, the biggest role a woman can ask for (you can identify with that after Rajveer's birth). Have been enjoying this delightful role till date, because of the love, affection and care you have been showering on me and the rest of the family.........Be blessed..........always ❤️🤗)" },
   { name: "Ashwani Juneja", message: "(Message goes here...)" },
   { name: "Sushma Kapoor", message: "(Message goes here...)" },
   { name: "Kulbushan Kapoor", message: "(Message goes here...)" },
