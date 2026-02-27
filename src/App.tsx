@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { motion } from 'framer-motion';
 import { Volume2, VolumeX, Heart } from 'lucide-react';
 
@@ -42,6 +43,40 @@ const heartfeltWords = [
   { name: "Bhavna & Sunil Khanna", message: "(Dear Ashima, some souls enter our lives like gentle sunlight — quiet, warm, and constant. You have been that light for us. Having you as a neighbour felt like having family next door. Your kindness, caring heart, and unwavering support brought comfort and happiness into our lives. Even today, life feels lighter knowing you are around. We are truly grateful for the beautiful bond we share. With love, Bhavna & Sunil 💛)" }, 
   { name: "Rakesh Khurana", message: "(Happy birthday to an amazing niece Ashima! 😊 You're a ray of sunshine in our lives. Wishing you a day as bright and beautiful as you are! 🎉.On your special day, I want you to know how proud we are of the smart, kind, and lovely person you have grown into. May your birthday be filled with laughter, adventure, and all your favourite things! 🎂)" }
 ];
+
+const Envelope = ({ onOpen }: { onOpen: () => void }) => {
+  return (
+    <motion.div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+    >
+      <motion.div 
+        className="relative w-80 h-52 bg-zinc-900 border-2 border-yellow-500/50 rounded-lg shadow-[0_0_40px_rgba(234,179,8,0.15)] cursor-pointer flex flex-col items-center justify-center group overflow-hidden"
+        onClick={onOpen}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {/* Envelope Flap Design */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <motion.div 
+            className="absolute -top-[60%] left-[10%] w-[80%] h-[120%] bg-zinc-800 border-b-2 border-r-2 border-yellow-500/50 rounded-br-3xl shadow-lg origin-top"
+            style={{ rotate: "45deg" }}
+            whileHover={{ rotateX: 20, backgroundColor: "#27272a" }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
+        
+        {/* Text */}
+        <div className="relative z-10 text-center mt-12">
+          <h2 className="text-5xl font-cursive text-yellow-400 mb-1 drop-shadow-md">To Ashima</h2>
+          <p className="text-sm text-zinc-400 italic font-serif">Click to open</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const FloatingParticles = () => {
   return (
