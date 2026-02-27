@@ -12,33 +12,35 @@ const timelineData = [
 ];
 
 const heartfeltWords = [
-  { name: "Rahul Kapoor", message: "(Message goes here...)" },
+  { name: "Rahul Kapoor", message: "(Happy Birthday BV ❤️, To the woman who doesn’t just stand beside me but quietly holds my entire world together — thank you. You take care of me in ways big and small. From making sure I’ve eaten, to listening to my endless thoughts, to standing strong when I’m not — you do it all with so much care and grace. I may not say it every day, but I feel it every single day. You are my comfort, my strength, my peace, and my biggest blessing. The way you look after me, support me, and love me so selflessly makes me want to become a better man every day. On your birthday, I just want you to feel the same warmth, protection, and care that you give me all year round. You deserve all the happiness in the world — and I promise to keep trying to give you just that. Happy Birthday to my heart, my home, my forever. 💖 "}, 
   { name: "Rajveer Kapoor", message: "To mumma, the best mother a child can ask for. Your are the mother people wish to be. I love you to the moon and backkkkkkk." },
   { name: "Zeke Kapoor", message: "Woof Woof Woof Woof." },
   { name: "Pramila Juneja", message: "(Message goes here...)" },
-  { name: "Ashwini Juneja", message: "(Message goes here...)" },
+  { name: "Ashwani Juneja", message: "(Message goes here...)" },
   { name: "Sushma Kapoor", message: "(Message goes here...)" },
   { name: "Kulbushan Kapoor", message: "(Message goes here...)" },
   { name: "Rohit Kapoor", message: "(Message goes here...)" },
   { name: "Grace Kapoor", message: "(Message goes here...)" },
   { name: "Kunal Khurana", message: "(Message goes here...)" },
-  { name: "Laksha Khurana", message: "(Happy Birthday, Ashima Didi ❤️ || Watching you over the years turn what you’ve always loved into something you do so effortlessly has been nothing short of inspiring. You didn’t just chase a goal… you became it. || Thank you for being our in-house fitness guru and reminder that strong is truly beautiful. || May this year bring you more endorphins, more adventures and of course, cake that fits the macros (or not - balance, right?). || Keep flexing. Keep shining. Keep inspiring. || With lots of love and a big birthday squeeze, || Laksha)" },
+  { name: "Laksha Khurana", message: "(Happy Birthday, Ashima Didi ❤️. Watching you over the years turn what you’ve always loved into something you do so effortlessly has been nothing short of inspiring. You didn’t just chase a goal… you became it.  Thank you for being our in-house fitness guru and reminder that strong is truly beautiful. May this year bring you more endorphins, more adventures and of course, cake that fits the macros (or not - balance, right?). Keep flexing. Keep shining. Keep inspiring. With lots of love and a big birthday squeeze, Laksha)" },
   { name: "Alay Patel", message: "(Message goes here...)" },
-  { name: "Apeksha Patel", message: "(Message goes here...)" },
-  { name: "Divya Jain", message: "(Message goes here...)" },
+  { name: "Apeksha Patel", message: "(Suno!! Apne birthday par humse kaam karvane ke liye tumne Rajveer ko laga to diya, par zyada fayda nahi hoga. Hum pyar bhare message bhi likne ki mehnat nahi karte, aur tarif to bilkul hi nahi!! But, If you want I can sing my signature song for you😅 — dost to kaminey hi hote ha. 🤗🤗 Wish you a very happy birthday!! And a life filled with health, love, laughter and happiness!!🥳🎉.)" },
+  { name: "Divya Jain", message: "(Ashima, I really tried very hard. I even consulted a few senior members of the group (you know whom I’m referring to 😜), but I wasn’t able to write anything rosy or friendship-type material… it’s just 💋 dost.)" },
   { name: "Shashank Jain", message: "(Message goes here...)" },
   { name: "Mansi Aggarwal", message: "(Message goes here...)" },
   { name: "Ankit Aggarwal", message: "(Message goes here...)" },
   { name: "Aman Mathur", message: "(Message goes here...)" },
   { name: "Vipul Mathur", message: "(Message goes here...)" },
-  { name: "Kavita Sharma", message: "(Message goes here...)" },
+  { name: "Kavita Sharma", message: "(Happy Birthday to my  unofficial wellness CEO 🎉. I got a  friend… and somehow unlocked a built-in accountability coach. Honestly, elite package. Thank you for caring the way you do and I’m getting stronger, it’s 50% me and 50% you refusing to let me quit 😌. Hope this year gives you gains in joy, peace, and everything you deserve. 💛)" },
   { name: "Sumit Sharma", message: "(Message goes here...)" },
-  { name: "Pooja Gehaani", message: "(Message goes here...)" },
-  { name: "Rajnesh Gehaani", message: "(Message goes here...)" },
+  { name: "Akshaan Jain", message: "(Ashima auntie is an amazing person. When I moved into the society and had no friends, she was the one who introduced me to my first friend. Since then she always made me feel like her second son. Letting me eat and do nightstays at her home aswell. She made me and Rajveer do things that changed us for the better. I am grateful and thankful to God for making me meet her.)" },
+  { name: "Rakesh Khurana", message: "(Message goes here...)" },
   { name: "Neelam Kaur", message: "(Message goes here...)" },
   { name: "Jaggi Kaur", message: "(Message goes here...)" },
   { name: "Deepti Mondol", message: "(Message goes here...)" },
-  { name: "Suvonath Mondol", message: "(Message goes here...)" }
+  { name: "Suvonath Mondol", message: "(Message goes here...)" }, 
+  { name: "Bhavna & Sunil Khanna", message: "(Dear Ashima, some souls enter our lives like gentle sunlight — quiet, warm, and constant. You have been that light for us. Having you as a neighbour felt like having family next door. Your kindness, caring heart, and unwavering support brought comfort and happiness into our lives. Even today, life feels lighter knowing you are around. We are truly grateful for the beautiful bond we share. With love, Bhavna & Sunil 💛)" }, 
+  { name: "Rakesh Khurana", message: "(Happy birthday to an amazing niece Ashima! 😊 You're a ray of sunshine in our lives. Wishing you a day as bright and beautiful as you are! 🎉.On your special day, I want you to know how proud we are of the smart, kind, and lovely person you have grown into. May your birthday be filled with laughter, adventure, and all your favourite things! 🎂)" }
 ];
 
 const FloatingParticles = () => {
